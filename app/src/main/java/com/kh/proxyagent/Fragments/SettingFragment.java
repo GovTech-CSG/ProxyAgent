@@ -56,6 +56,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -233,7 +235,7 @@ public class SettingFragment extends Fragment {
 
             CallbackFuture future = new CallbackFuture();
             client.newCall(request).enqueue(future);
-            Response response = future.get(); // To get async operation to sync operation
+            Response response = future.get(2, TimeUnit.SECONDS); // To get async operation to sync operation
 
             if (response.isSuccessful()) {
                 proxySetting(false);
@@ -244,7 +246,7 @@ public class SettingFragment extends Fragment {
                 return false;
             }
         }
-        catch (InterruptedException | ExecutionException e) {
+        catch (InterruptedException | ExecutionException | TimeoutException e) {
             proxySetting(false);
             return false;
         }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Proxy_Agent.iml" filepath="$PROJECT_DIR$/.idea/modules/Proxy_Agent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Proxy_Agent.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Proxy_Agent.app.iml" />
+    </modules>
+  </component>
+</project>

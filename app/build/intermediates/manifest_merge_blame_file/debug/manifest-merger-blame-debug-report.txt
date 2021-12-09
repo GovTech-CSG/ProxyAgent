@@ -1,0 +1,80 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.kh.proxyagent"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+8-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:5:5-67
+11-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:5:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:6:5-79
+12-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:6:22-76
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+13-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:7:5-76
+13-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:7:22-74
+14
+15    <!-- android:icon="@mipmap/ic_launcher" -->
+16    <application
+16-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:10:5-31:19
+17        android:name="com.kh.proxyagent.Foreground.NotificationApp"
+17-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:12:9-51
+18        android:allowBackup="true"
+18-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:11:9-35
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.5.0] C:\Users\kh\.gradle\caches\transforms-2\files-2.1\cc5e9dcdc56dc39042f72c501235e83f\core-1.5.0\AndroidManifest.xml:24:18-86
+20        android:debuggable="true"
+21        android:extractNativeLibs="false"
+22        android:icon="@drawable/icon"
+22-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:14:9-38
+23        android:label="@string/app_name"
+23-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:15:9-41
+24        android:roundIcon="@mipmap/ic_launcher_round"
+24-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:16:9-54
+25        android:supportsRtl="true"
+25-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:17:9-35
+26        android:testOnly="true"
+27        android:theme="@style/Theme.ProxyAgent"
+27-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:18:9-48
+28        android:usesCleartextTraffic="true" >
+28-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:13:9-44
+29        <service android:name="com.kh.proxyagent.Foreground.ForegroundBuilder" />
+29-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:20:9-64
+29-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:20:18-62
+30
+31        <activity
+31-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:21:9-30:20
+32            android:name="com.kh.proxyagent.MainActivity"
+32-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:21:19-47
+33            android:configChanges="orientation"
+33-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:22:13-48
+34            android:screenOrientation="portrait"
+34-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:23:13-49
+35            android:theme="@style/AppTheme.NoActionBar" >
+35-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:24:13-56
+36            <intent-filter>
+36-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:25:13-29:29
+37                <action android:name="android.intent.action.MAIN" />
+37-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:26:17-69
+37-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:26:25-66
+38
+39                <category android:name="android.intent.category.LAUNCHER" />
+39-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:28:17-77
+39-->C:\opt\govtech\ProxyAgent\app\src\main\AndroidManifest.xml:28:27-74
+40            </intent-filter>
+41        </activity>
+42        <activity
+42-->[com.karumi:dexter:6.2.2] C:\Users\kh\.gradle\caches\transforms-2\files-2.1\80cd7d58284f024feb6ac8baaa9a2f42\dexter-6.2.2\AndroidManifest.xml:27:9-29:72
+43            android:name="com.karumi.dexter.DexterActivity"
+43-->[com.karumi:dexter:6.2.2] C:\Users\kh\.gradle\caches\transforms-2\files-2.1\80cd7d58284f024feb6ac8baaa9a2f42\dexter-6.2.2\AndroidManifest.xml:28:13-60
+44            android:theme="@style/Dexter.Internal.Theme.Transparent" />
+44-->[com.karumi:dexter:6.2.2] C:\Users\kh\.gradle\caches\transforms-2\files-2.1\80cd7d58284f024feb6ac8baaa9a2f42\dexter-6.2.2\AndroidManifest.xml:29:13-69
+45    </application>
+46
+47</manifest>

@@ -16,16 +16,17 @@
 
 package com.kh.proxyagent.Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -40,10 +41,9 @@ import com.kh.proxyagent.HttpAsync.CallbackFuture;
 import com.kh.proxyagent.MainActivity;
 import com.kh.proxyagent.R;
 
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -105,14 +105,32 @@ public class HomeFragment extends Fragment {
                     if (variableSet) {
                         if(wifiConnected()) {
                             boolean hasConnection = testConnection();
-                            if (!toggle && hasConnection) {
-                                if(MainActivity.executeCommand("settings put global http_proxy " + proxyAddress + ":" + port)) {
-                                    powerButton.setImageResource(R.drawable.stop_button);
-                                    toggle = true;
-                                    interfaceCheck = true;
-                                    startForegroundService();
+                            if (!toggle) {
+                                if(hasConnection) {
+                                    if (MainActivity.executeCommand("settings put global http_proxy " + proxyAddress + ":" + port)) {
+                                        powerButton.setImageResource(R.drawable.stop_button);
+                                        toggle = true;
+                                        interfaceCheck = true;
+                                        startForegroundService();
+                                    }
                                 }
+                                else {
+                                    AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+                                    View mView = getLayoutInflater().inflate(R.layout.connection_dialog, null);
 
+                                    Button yes = mView.findViewById(R.id.yesButton);
+
+                                    mBuilder.setView(mView);
+                                    AlertDialog dialog = mBuilder.create();
+
+                                    yes.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+                                    dialog.show();
+                                }
                             }
                             else {
                                 if(MainActivity.executeCommand("settings put global http_proxy :0")) {
@@ -161,7 +179,7 @@ public class HomeFragment extends Fragment {
 
             CallbackFuture future = new CallbackFuture();
             client.newCall(request).enqueue(future);
-            Response response = future.get(); // To get async operation to sync operation
+            Response response = future.get(2, TimeUnit.SECONDS); // To get async operation to sync operation
 
             if (response.isSuccessful()) {
                 proxySetting(false);
@@ -172,7 +190,7 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         }
-        catch (InterruptedException | ExecutionException e) {
+        catch (InterruptedException | ExecutionException | TimeoutException e) {
             proxySetting(false);
             return false;
         }
